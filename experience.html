@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Experience — Sam Suther</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Sam Suther <span>// UNCC</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="experience.html" class="active">Experience</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-content">
+      <div class="page-label">Where I've Worked</div>
+      <h1>Experience</h1>
+    </div>
+  </div>
+
+  <div class="page-content">
+
+    <div class="exp-card reveal">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">IT Intern</div>
+          <div class="exp-company">ScentAir Technologies, LLC — Charlotte, NC</div>
+        </div>
+        <div class="exp-date">May 2024 – Aug 2024</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Supported all facets of IT including help desk, infrastructure, applications, and security</li>
+        <li>Responded to MS Teams support, password resets, BitLocker key assignments, and network connectivity issues</li>
+        <li>Configured new users, assisted with equipment setup, iPad deployment, MFA and security configuration</li>
+        <li>Worked with Raspberry Pi for video displays, handled phone system updates, software deployments, and system backup and recovery</li>
+      </ul>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">System & Software Engineer Intern</div>
+          <div class="exp-company">Union County Schools — Monroe, NC</div>
+        </div>
+        <div class="exp-date">May 2023 – Aug 2023</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Performed diverse IT support including computer imaging, hardware/software troubleshooting, and device setup</li>
+        <li>Managed student data, took repair orders, and salvaged devices for repurposed parts</li>
+        <li>Scanned, organized, and repaired Chromebooks; updated data banks and delivered technology to schools</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>
+    Built by Sam Suther, <span id="year"></span>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

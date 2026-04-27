@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects — Sam Suther</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Sam Suther <span>// UNCC</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-content">
+      <div class="page-label">Things I've Built</div>
+      <h1>Projects</h1>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-badge badge-complete">Complete</div>
+        <div class="project-title">Diffie-Hellman Key Exchange & MITM Simulation</div>
+        <div class="project-desc">
+          Built a Python program that simulates how two people can securely exchange encrypted messages using the Diffie-Hellman protocol. The project runs two scenarios, one where the communication works as intended, and one where a third party silently intercepts, reads, and modifies the messages without either person knowing. Uses SHA-256 hashing for the encryption layer.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Cryptography</span>
+          <span class="tag">SHA-256</span>
+          <span class="tag">Diffie-Hellman</span>
+          <span class="tag">MITM Attack</span>
+          <span class="tag">PRNG</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/ssuther6-ops" target="_blank">School GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-badge badge-progress">In Progress</div>
+        <div class="project-title">Yale School of Art Responsive Redesign</div>
+        <div class="project-desc">
+          Senior capstone project redesigning the Yale School of Art website with a focus on interaction design and mobile responsiveness. Built from a Figma prototype into a fully functional site with hamburger navigation, touch-friendly layouts, and consistent cross-device behavior. Collaborative team project for ITIS 4390 Interaction Design Projects.
+        </div>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Responsive Design</span>
+          <span class="tag">Capstone</span>
+        </div>
+        <div class="project-links">
+          <a href="yale.html">Case Study →</a>
+          <a href="https://giancarlopretell.github.io/Interaction-Design-Capstone/" target="_blank">Live Site →</a>
+          <a href="https://www.figma.com/proto/fqoenoO4JaLWZZ7y0kLSSS/Assignment-7?node-id=43-426&starting-point-node-id=43%3A426" target="_blank">Figma Prototype →</a>
+          <a href="https://github.com/GiancarloPretell/Interaction-Design-Capstone" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-badge badge-progress">In Progress</div>
+        <div class="project-title">Online Library Management System</div>
+        <div class="project-desc">
+          Team project for ITIS 3300 Software Requirements, Analysis and Testing. A web-based system for managing book inventory, user accounts, and borrowing transactions including checkout, returns, due dates, and availability tracking. Built with a 5-person team applying full SDLC methodology from requirements through testing.
+        </div>
+        <div class="project-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">Software Requirements</span>
+          <span class="tag">SDLC</span>
+          <span class="tag">ITIS 3300</span>
+        </div>
+        <div class="project-links">
+          <a href="https://ssuther6-ops.github.io/ITIS3300-Panthers/" target="_blank">Live Site →</a>
+          <a href="https://github.com/ssuther6-ops/ITIS3300-Panthers" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-badge badge-complete">Complete</div>
+        <div class="project-title">Pi-hole DNS Sinkhole</div>
+        <div class="project-desc">
+          Set up a Raspberry Pi 5 as a network-wide DNS sinkhole using Pi-hole v6. Flashed Raspberry Pi OS Lite, configured SSH remote access, and installed Pi-hole from the command line. The ISP router blocked DNS changes through its interface, so I disabled its DHCP server and used Pi-hole's built-in DHCP instead, covering every device on the network automatically. Ended up with 92,277 domains on the blocklist and full query logging across all clients in real time.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Raspberry Pi</span>
+          <span class="tag">Linux</span>
+          <span class="tag">DNS</span>
+          <span class="tag">DHCP</span>
+          <span class="tag">SSH</span>
+          <span class="tag">Network Security</span>
+          <span class="tag">Homelab</span>
+        </div>
+        <div class="project-links">
+          <a href="pihole_report.pdf" target="_blank">View Report →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-badge badge-complete">Complete</div>
+        <div class="project-title">Windows Forensic Examination</div>
+        <div class="project-desc">
+          Conducted a forensic investigation of three E01 disk images (suspect laptop + hotel kiosk) for a simulated criminal case. Used FTK Imager to verify image integrity via MD5/SHA1 hashes, Autopsy to analyze email artifacts, web search history, downloaded files, and browser cache, and Registry Explorer to identify the OS version and user activity. Documented a full suspect timeline, identified Guild operative communications, anti-forensics searches, and confirmed downloaded images via Zone.Identifier ADS.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Digital Forensics</span>
+          <span class="tag">FTK Imager</span>
+          <span class="tag">Autopsy</span>
+          <span class="tag">Registry Explorer</span>
+          <span class="tag">Windows</span>
+          <span class="tag">E01 Images</span>
+          <span class="tag">ITIS 4250</span>
+        </div>
+        <div class="project-links">
+          <a href="Lab3_Report_SamSuther.pdf" target="_blank">View Report →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-badge badge-award">1st Place</div>
+        <div class="project-title">Lock Picking & Cybersecurity Workshop</div>
+        <div class="project-desc">
+          Placed 1st in a lock picking competition hosted by ISSA (Information Systems Security Association), a Charlotte-area professional organization focused on cybersecurity education, threat intelligence, and community-driven security events. Explored physical security vulnerabilities and core security principles through hands-on competition.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Physical Security</span>
+          <span class="tag">ISSA Charlotte</span>
+          <span class="tag">Cybersecurity</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    Built by Sam Suther, <span id="year"></span>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
