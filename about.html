@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Sam Suther</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Sam Suther <span>// UNCC</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-content">
+      <div class="page-label">Who I Am</div>
+      <h1>About</h1>
+    </div>
+  </div>
+
+  <div class="page-content">
+
+    <!-- ABOUT -->
+    <div class="section-label">Background</div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>I'm a <span>CS senior at UNC Charlotte</span> concentrating in Information Technology with a focus in cybersecurity. Graduating in 2026 and actively looking for entry-level roles in the security space, whether that's SOC work, IT security, or anywhere I can keep learning.</p>
+        <p>My hands-on experience comes from two IT internships. At <span>ScentAir Technologies</span> I worked across help desk, infrastructure, and security including MFA setup, BitLocker, and network troubleshooting. At <span>Union County Schools</span> I handled device imaging, hardware repair, and data management at scale.</p>
+        <p>Outside of class I read, game, and keep fish tanks.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card"><div class="stat-number">2026</div><div class="stat-label">Expected Grad</div></div>
+        <div class="stat-card"><div class="stat-number">CS</div><div class="stat-label">Major at UNCC</div></div>
+        <div class="stat-card"><div class="stat-number">Cyber</div><div class="stat-label">Focus Area</div></div>
+        <div class="stat-card"><div class="stat-number">CLT</div><div class="stat-label">Based In</div></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- EDUCATION -->
+    <div class="section-label">Education</div>
+    <h2>Background</h2>
+    <div class="edu-card reveal">
+      <div>
+        <div class="edu-school">UNC Charlotte</div>
+        <div class="edu-degree">Bachelor of Arts — Computer Science, Concentration in Information Technology</div>
+        <div class="edu-tags">
+          <span class="tag">Cybersecurity</span>
+          <span class="tag">Information Security & Privacy</span>
+          <span class="tag">Data Structures & Algorithms</span>
+          <span class="tag">Database Design (SQL)</span>
+          <span class="tag">Human-Centered Computing</span>
+          <span class="tag">Python</span>
+          <span class="tag">Java</span>
+        </div>
+      </div>
+      <div style="text-align:right; flex-shrink:0;"><div class="edu-year">Expected Aug 2026</div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SKILLS -->
+    <div class="section-label">Skills</div>
+    <h2>Tools & Tech</h2>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-list">
+          <span class="skill-item">Python</span>
+          <span class="skill-item">Java</span>
+          <span class="skill-item">SQL</span>
+          <span class="skill-item">HTML</span>
+          <span class="skill-item">CSS</span>
+          <span class="skill-item">KQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Security</div>
+        <div class="skill-list">
+          <span class="skill-item">KC7</span>
+          <span class="skill-item">Pi-hole</span>
+          <span class="skill-item">MFA Configuration</span>
+          <span class="skill-item">BitLocker</span>
+          <span class="skill-item">DNS Filtering</span>
+          <span class="skill-item">Physical Security</span>
+          <span class="skill-item">Cryptography</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Tools & Systems</div>
+        <div class="skill-list">
+          <span class="skill-item">Linux</span>
+          <span class="skill-item">Windows OS</span>
+          <span class="skill-item">Raspberry Pi</span>
+          <span class="skill-item">Git</span>
+          <span class="skill-item">GitHub</span>
+          <span class="skill-item">VS Code</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">IT & Support</div>
+        <div class="skill-list">
+          <span class="skill-item">Help Desk</span>
+          <span class="skill-item">PC Hardware</span>
+          <span class="skill-item">Network Troubleshooting</span>
+          <span class="skill-item">Device Imaging</span>
+          <span class="skill-item">Software Deployment</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Built by Sam Suther, <span id="year"></span>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

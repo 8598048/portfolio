@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yale School of Art Redesign — Sam Suther</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --border: #1e1e2e;
+      --accent: #00ff87;
+      --accent2: #0af;
+      --text: #e8e8f0;
+      --muted: #6b6b80;
+      --font-head: 'Syne', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo { font-family: var(--font-head); font-weight: 800; font-size: 1.1rem; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+    .nav-back { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--accent); }
+
+    .hero {
+      min-height: 55vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(0,255,135,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,135,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-glow {
+      position: absolute; width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,170,255,0.05) 0%, transparent 70%);
+      top: 50%; left: 40%; transform: translate(-50%, -50%); pointer-events: none;
+    }
+
+    .hero-content { position: relative; max-width: 800px; }
+
+    .hero-tag {
+      display: inline-block; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent2); border: 1px solid rgba(0,170,255,0.3); padding: 0.3rem 0.8rem;
+      border-radius: 2px; margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-head); font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.2rem;
+    }
+
+    .hero-meta {
+      display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem;
+    }
+
+    .meta-item { font-size: 0.78rem; color: var(--muted); }
+    .meta-item span { color: var(--text); display: block; margin-top: 0.2rem; font-size: 0.85rem; }
+
+    .case-study {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 4rem;
+    }
+
+    .cs-section { margin-bottom: 5rem; }
+
+    .section-label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.8rem;
+    }
+
+    .cs-section h2 {
+      font-family: var(--font-head); font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1.5rem; line-height: 1.1;
+    }
+
+    .cs-section p {
+      color: var(--muted); line-height: 1.85; margin-bottom: 1rem;
+    }
+
+    .cs-section p span { color: var(--text); }
+
+    .divider { width: 100%; height: 1px; background: var(--border); margin: 0 0 5rem; }
+
+    .img-block {
+      margin: 2.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .img-block img {
+      width: 100%;
+      display: block;
+    }
+
+    .img-caption {
+      padding: 0.8rem 1.2rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.04em;
+    }
+
+    .img-caption strong { color: var(--accent2); margin-right: 0.4rem; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    .problem-list {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .problem-list li {
+      color: var(--muted);
+      padding: 0.8rem 1rem 0.8rem 1.5rem;
+      position: relative;
+      border-left: 2px solid var(--border);
+      margin-bottom: 0.6rem;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      transition: border-color 0.2s;
+    }
+
+    .problem-list li:hover { border-color: var(--accent); }
+    .problem-list li strong { color: var(--text); display: block; margin-bottom: 0.2rem; }
+
+    .decision-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .decision-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .decision-card:hover { border-color: var(--accent2); }
+
+    .decision-card h4 {
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 0.6rem;
+    }
+
+    .decision-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    .testing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 0.83rem;
+    }
+
+    .testing-table th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .testing-table td {
+      padding: 0.85rem 1rem;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      line-height: 1.6;
+      vertical-align: top;
+    }
+
+    .testing-table td:first-child { color: var(--text); font-size: 0.85rem; }
+    .testing-table tr:last-child td { border-bottom: none; }
+
+    .outcome-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(0,255,135,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(0,255,135,0.2);
+      margin-top: 0.3rem;
+    }
+
+    .final-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.8rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+
+    .btn-primary { background: var(--accent); color: #000; font-weight: 500; }
+    .btn-primary:hover { background: #fff; transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .case-study { padding: 3rem 1.5rem; }
+      .two-col { grid-template-columns: 1fr; }
+      .hero-meta { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Sam Suther <span>// UNCC</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Case Study — Interaction Design Projects</div>
+      <h1>Yale School of Art<br>Website Redesign</h1>
+      <div class="hero-meta">
+        <div class="meta-item">Course <span>ITIS 4390 Capstone</span></div>
+        <div class="meta-item">Team <span>5 Members</span></div>
+        <div class="meta-item">Stack <span>HTML, CSS, JavaScript</span></div>
+        <div class="meta-item">Tools <span>Figma, GitHub Pages</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-study">
+
+    <!-- PROBLEM STATEMENT -->
+    <div class="cs-section reveal">
+      <div class="section-label">// 01 — Problem Statement</div>
+      <h2>What Was Wrong</h2>
+      <p>
+        The Yale School of Art website (<a href="https://art.yale.edu" target="_blank" style="color:var(--accent2);">art.yale.edu</a>) is one of the most visually disorienting institutional sites on the web. It operates as an open wiki, meaning any member of the school community can edit it. The result is a site with no consistent visual hierarchy, competing color schemes, and content that is genuinely difficult to navigate for anyone who is not already familiar with the institution.
+      </p>
+      <p>
+        For a prospective student trying to understand MFA programs, find admissions information, or learn about upcoming events, the experience is frustrating. <span>The problem is not just aesthetic — it is a usability failure.</span> The original site gives equal visual weight to almost everything, making it hard to know where to look or what matters.
+      </p>
+
+      <div class="img-block">
+        <img src="YaleOGweb.png" alt="Original Yale School of Art website showing cluttered layout with competing colors" />
+        <div class="img-caption"><strong>Before:</strong> The original art.yale.edu — yellow bold text, orange sidebar, green photo background, and no clear visual hierarchy.</div>
+      </div>
+
+      <ul class="problem-list">
+        <li>
+          <strong>No visual hierarchy</strong>
+          Yellow headline text, orange sidebars, and green background photos compete for attention simultaneously. Nothing reads as more important than anything else.
+        </li>
+        <li>
+          <strong>Navigation is unclear</strong>
+          The left sidebar navigation is small and low contrast. There is no clear path for a new visitor trying to find program or admissions info.
+        </li>
+        <li>
+          <strong>Wiki artifacts visible to the public</strong>
+          "Edit this page," "Page history," and "Visitor: Log in" buttons are visible to all users, which undermines the site's credibility as an institutional presence.
+        </li>
+        <li>
+          <strong>No mobile consideration</strong>
+          The layout does not adapt to smaller screens. On mobile, the site becomes nearly unusable with text overflowing and touch targets too small to use reliably.
+        </li>
+        <li>
+          <strong>Program information is buried</strong>
+          The MFA programs — the primary reason most visitors come to the site — have no clear entry point or visual prominence on the homepage.
+        </li>
+      </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- PROCESS -->
+    <div class="cs-section reveal">
+      <div class="section-label">// 02 — Process</div>
+      <h2>How We Got There</h2>
+      <p>
+        The redesign moved through three stages: hand-drawn sketches to establish structure, low-fidelity digital wireframes to refine layout and navigation, and high-fidelity Figma prototypes to finalize the visual design before building in code.
+      </p>
+
+      <h3 style="font-family:var(--font-head); font-size:1.1rem; font-weight:700; margin: 2rem 0 0.8rem; color:var(--accent2);">Stage 1 — Sketches</h3>
+      <p>
+        We started with paper sketches to explore structure without getting distracted by color or styling decisions. These covered the homepage, events page, search page, form/apply page, and dark mode concepts for both mobile and desktop. The key questions at this stage were: <span>what does the navigation look like, how do we handle mobile, and what sections does the homepage actually need?</span>
+      </p>
+
+      <div class="img-block">
+        <img src="Sketches.png" alt="Hand-drawn wireframe sketches for mobile and desktop layouts" />
+        <div class="img-caption"><strong>Sketches:</strong> Initial hand-drawn wireframes exploring mobile (iOS/Android) and desktop layouts for the homepage, events, search, and apply pages.</div>
+      </div>
+
+      <h3 style="font-family:var(--font-head); font-size:1.1rem; font-weight:700; margin: 2rem 0 0.8rem; color:var(--accent2);">Stage 2 — Low-Fidelity Wireframes</h3>
+      <p>
+        After settling on a general structure, we moved to digital low-fidelity wireframes. These established the actual layout grid, content sections, and navigation behavior across breakpoints without any color or real content. This stage was where we locked in the core structure: a top navigation bar for desktop, a hamburger menu for mobile, a hero section, and a clear content section below.
+      </p>
+
+      <div class="img-block">
+        <img src="LowFidwire.png" alt="Digital low-fidelity wireframes showing home page layout on desktop and mobile" />
+        <div class="img-caption"><strong>Low-Fidelity Wireframes:</strong> Digital wireframes showing the homepage structure across desktop and two mobile breakpoints, with hero section, content blocks, and navigation mapped out.</div>
+      </div>
+
+      <h3 style="font-family:var(--font-head); font-size:1.1rem; font-weight:700; margin: 2rem 0 0.8rem; color:var(--accent2);">Stage 3 — High-Fidelity Prototype</h3>
+      <p>
+        The high-fidelity prototype in Figma applied the visual design to the wireframe structure. We introduced a clean white and neutral palette, consistent card-based layouts for program pages, and clear typographic hierarchy. Each MFA program page — Painting and Printmaking, Sculpture, and Graphic Design — followed the same layout pattern so users always knew where to find the same type of information.
+      </p>
+
+      <div class="img-block">
+        <img src="FigmaHighFid.png" alt="High-fidelity Figma prototype screens showing desktop and mobile program pages" />
+        <div class="img-caption"><strong>High-Fidelity Prototype:</strong> Figma screens for the homepage and individual MFA program pages (Painting and Printmaking, Sculpture, Graphic Design) on both desktop and mobile.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- DESIGN DECISIONS -->
+    <div class="cs-section reveal">
+      <div class="section-label">// 03 — Design Decisions</div>
+      <h2>Key Choices and Why</h2>
+      <p>
+        Every major design decision was made in response to something specific that was broken in the original. These are the ones that had the biggest impact on usability.
+      </p>
+
+      <div class="decision-grid">
+        <div class="decision-card">
+          <h4>Clean Color Palette</h4>
+          <p>The original site's competing colors made everything feel equally urgent. We stripped it back to a white base with minimal accent color so that visual weight could actually signal importance.</p>
+        </div>
+        <div class="decision-card">
+          <h4>Hamburger Menu on Mobile</h4>
+          <p>The original sidebar navigation collapsed poorly on small screens. A standard hamburger menu with a full-screen overlay gives mobile users clear, tappable navigation without clutter.</p>
+        </div>
+        <div class="decision-card">
+          <h4>Consistent Program Page Template</h4>
+          <p>Each MFA program now follows the same layout: hero image, program overview, key details, and a call to action. Users learn the pattern once and can apply it across all programs.</p>
+        </div>
+        <div class="decision-card">
+          <h4>Removing Wiki UI from Public View</h4>
+          <p>Edit buttons, page history, and login prompts were removed entirely from the public-facing design. These belong in an admin interface, not the front page of an MFA school.</p>
+        </div>
+        <div class="decision-card">
+          <h4>Card-Based Content Sections</h4>
+          <p>Instead of flat text blocks, content is grouped into cards with consistent spacing. This creates visual structure and makes it easier to scan the page quickly.</p>
+        </div>
+        <div class="decision-card">
+          <h4>Mobile-First Breakpoints</h4>
+          <p>We designed the mobile layout first, then expanded to desktop. This forced us to prioritize the most important content instead of squeezing a desktop layout down.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- TESTING -->
+    <div class="cs-section reveal">
+      <div class="section-label">// 04 — Testing and Feedback</div>
+      <h2>What We Tested, What Changed</h2>
+      <p>
+        We ran feedback sessions at two stages: during the wireframe phase and after the high-fidelity prototype was complete. Feedback came from peer critiques in class and cross-device testing across desktop, tablet, and mobile screen sizes.
+      </p>
+
+      <table class="testing-table">
+        <thead>
+          <tr>
+            <th>Issue Found</th>
+            <th>Feedback Source</th>
+            <th>What Changed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Program links were not obvious enough on the homepage</td>
+            <td>Peer critique, wireframe stage</td>
+            <td>Added a dedicated MFA programs section with labeled cards and direct links to each program page</td>
+          </tr>
+          <tr>
+            <td>Mobile nav overlay did not have a clear close button</td>
+            <td>Device testing on mobile</td>
+            <td>Added an X button at the top right of the mobile nav overlay with enough tap area to use reliably</td>
+          </tr>
+          <tr>
+            <td>Program detail pages had too much text with no visual breaks</td>
+            <td>Peer critique, prototype stage</td>
+            <td>Split program info into labeled sections with spacing and added a sidebar card for key program details</td>
+          </tr>
+          <tr>
+            <td>Footer lacked contact and location info</td>
+            <td>Peer feedback</td>
+            <td>Added school address, email, and phone number to the footer to match what users expect from an institutional site</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- FINAL PRODUCT -->
+    <div class="cs-section reveal">
+      <div class="section-label">// 05 — Final Product</div>
+      <h2>The Result</h2>
+      <p>
+        The finished site is a fully responsive redesign of the Yale School of Art website built in HTML, CSS, and JavaScript. It covers the homepage, individual MFA program pages for Painting and Printmaking, Sculpture, and Graphic Design, and includes consistent navigation, a mobile hamburger menu, and a footer with contact information.
+      </p>
+      <p>
+        Compared to the original, the redesign gives prospective students a <span>clear path to find programs, understand requirements, and take action.</span> The layout is consistent across pages and works across desktop and mobile without layout issues.
+      </p>
+
+      <div class="img-block">
+        <img src="FigmaHighFid.png" alt="Final product screenshots showing the completed Yale School of Art redesign" />
+        <div class="img-caption"><strong>Final Product:</strong> Completed redesign showing desktop and mobile views across the homepage and MFA program pages for Painting and Printmaking, Sculpture, and Graphic Design.</div>
+      </div>
+
+      <div class="final-links">
+        <a href="https://giancarlopretell.github.io/Interaction-Design-Capstone/" target="_blank" class="btn btn-primary">View Live Site</a>
+        <a href="https://www.figma.com/proto/fqoenoO4JaLWZZ7y0kLSSS/Assignment-7?node-id=43-426&starting-point-node-id=43%3A426" target="_blank" class="btn btn-ghost">Figma Prototype</a>
+        <a href="https://github.com/GiancarloPretell/Interaction-Design-Capstone" target="_blank" class="btn btn-ghost">GitHub</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Built by Sam Suther, <span id="year"></span>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Sam Suther</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .contact-page {
+      min-height: calc(100vh - 140px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+    }
+    .contact-inner { text-align: center; max-width: 600px; width: 100%; }
+    .contact-inner .page-label { justify-content: center; margin-bottom: 0.6rem; }
+    .contact-inner h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .contact-sub { color: var(--muted); margin-bottom: 2.5rem; line-height: 1.8; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Sam Suther <span>// UNCC</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="contact-page">
+    <div class="contact-inner reveal">
+      <div class="page-label">Get In Touch</div>
+      <h1>Let's Connect</h1>
+      <p class="contact-sub">Open to internships, entry-level security roles, and interesting projects. Best way to reach me is email or LinkedIn.</p>
+      <div class="contact-links">
+        <a href="mailto:sampack2003@gmail.com" class="contact-link">✉ Email</a>
+        <a href="https://www.linkedin.com/in/sam-suther-0a3704267/" target="_blank" class="contact-link">in LinkedIn</a>
+        <a href="https://github.com/8598048" target="_blank" class="contact-link">⌥ GitHub</a>
+        <a href="https://github.com/ssuther6-ops" target="_blank" class="contact-link">⌥ School GitHub</a>
+        <a href="Samuel%20Suther%20Resume%202-11-26.pdf" target="_blank" class="contact-link">↓ Resume</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Built by Sam Suther, <span id="year"></span>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
